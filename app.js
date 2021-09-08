@@ -16,6 +16,7 @@ app.get("/",function(req,res){
   console.log("BOOK COUNT!!",book.count)
    res.render("index.ejs",{count: book.count})
 })
+
 app.listen(port, ()=>console.log("Server listening..."))
 // app.use(require("express-session")({
 //   secret: "So it goes",
@@ -23,12 +24,22 @@ app.listen(port, ()=>console.log("Server listening..."))
 //   saveUninitialized: false
 // }));
 
-app.locals.moment = require("moment")
+//VIEWS MIDDLE
+app.use(express.static(__dirname + '/public'));
 app.set("view engine","ejs")
+app.set("views","./views")
+
+//TIME
+app.locals.moment = require("moment")
+
+
+
+//ERROR
 app.use((err, req, res, next) => {
   res.locals.error = err;
   const status = err.status || 500;
   res.status(status);
   res.render('error',{error: err});
 });
+
 // app.use(bookRoutes)
