@@ -8,13 +8,15 @@ const url = "mongodb://localhost:27017/";
 const Customer = require("./models/customer.js"), Purchase = require("./models/purchase.js"),
 Book = require("./models/book")
 
+
+const port = 3003
 const bookRoutes = require("./routes/book")
 app.get("/",function(req,res){
   const book =  Book.find()
   console.log("BOOK COUNT!!",book.count)
    res.render("index.ejs",{count: book.count})
 })
-app.listen(3003)
+app.listen(port, ()=>console.log("Server listening..."))
 // app.use(require("express-session")({
 //   secret: "So it goes",
 //   resave: false,
@@ -25,7 +27,8 @@ app.locals.moment = require("moment")
 app.set("view engine","ejs")
 app.use((err, req, res, next) => {
   res.locals.error = err;
-  res.status(err.status);
-  res.render('error');
+  const status = err.status || 500;
+  res.status(status);
+  res.render('error',{error: err});
 });
 // app.use(bookRoutes)
