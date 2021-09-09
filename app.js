@@ -4,20 +4,17 @@ const mongoose = require("mongoose")
 const dotenv = require("dotenv")
 dotenv.config()
 const MongoClient = require('mongodb').MongoClient;
-const url = "mongodb://localhost:27017/";
+const url = "mongodb://localhost:27017/hell";
 const Customer = require("./models/customer.js"), Purchase = require("./models/purchase.js"),
 Book = require("./models/book")
 
 
 const port = 3003
 const bookRoutes = require("./routes/book")
-app.get("/",function(req,res){
-  const book =  Book.find()
-  console.log("BOOK COUNT!!",book.count)
-   res.render("index.ejs",{count: book.count})
-})
+const indexRoutes = require("./routes/index")
 
 app.listen(port, ()=>console.log("Server listening..."))
+mongoose.connect(url)
 // app.use(require("express-session")({
 //   secret: "So it goes",
 //   resave: false,
@@ -41,5 +38,5 @@ app.use((err, req, res, next) => {
   res.status(status);
   res.render('error',{error: err});
 });
-
+app.use(indexRoutes)
 // app.use(bookRoutes)

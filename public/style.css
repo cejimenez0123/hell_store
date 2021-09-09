@@ -1,5 +1,16 @@
 #item-card{
     margin: auto;
     max-width: fit-content;
-    background-color: aqua;
+    padding: 5%;
 }
+body{
+    background-color: #FFDC7E;
+}
+.book{font-family: Garamond,Baskerville,Baskerville Old Face,serif; }
+
+.card-bio{
+    max-width: 400px;
+    margin-top: 1cm;
+}
+.shopping-cart{margin-right: 5%;}
+.navbar-brand{margin-left: 5%}
