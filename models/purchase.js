@@ -1,7 +1,7 @@
 const mongoose = require("mongoose")
 mongoose.set('debug', true);
 
-const purchaseSchema  = mongoose.Schema({
+const purchaseSchema  = new mongoose.Schema({
     customerId: String,
     cost:String,
     createdAt: {type: Date, default: Date.now}

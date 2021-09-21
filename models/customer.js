@@ -1,7 +1,7 @@
 const mongoose = require("mongoose")
 
-
-var customerSchema = mongoose.Schema({
+mongoose.set('debug', true);
+var customerSchema = new mongoose.Schema({
     id: String,
     firstName: String,
     lastName:String,

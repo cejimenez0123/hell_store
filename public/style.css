@@ -14,3 +14,8 @@ body{
 }
 .shopping-cart{margin-right: 5%;}
 .navbar-brand{margin-left: 5%}
+#payment-forms{
+    max-width: fit-content;
+    margin:auto;
+    background-color: aqua;
+}

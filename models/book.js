@@ -1,10 +1,9 @@
 const mongoose = require("mongoose")
 
-
+mongoose.set('debug', true);
 const bookCreationSchema = new mongoose.Schema({
     bookName:String,
     bookAuthor:String,
-    bookImages: String,
     bio: String,
     price: Number,
 	createdAt: {type: Date, default: Date.now}

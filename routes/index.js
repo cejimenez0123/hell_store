@@ -9,7 +9,7 @@ router.post("/users/session",function(req,res){}
 
 
 )
-router.get("/",function(req,res){
+router.get("/",function(req,resp){
    // const book = new Book({bookName:"Good Hell",bookAuthor})
    const books =  Book.find()
    var book 
@@ -17,10 +17,10 @@ router.get("/",function(req,res){
    if (err){
       console.log(`err`,err)}else{
          console.log('bookCount',res)
-         book = res
-      }
-   })
-   res.render("index.ejs", {bookCount: book}
-   )
+         resp.render("index.ejs", {bookCount: res})
+         
+   }})
+  
+   
 })
 module.exports = router

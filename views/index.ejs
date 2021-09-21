@@ -21,11 +21,16 @@ in New York, what it feels like.
         <h6 class="book">by</h6>
         <h5 class="book">Sol Emilio</h5>
     </section>
-    <button class="btn-add-to-cart">ADD TO CART</button>
+    <% if (bookCount > 0) {%>
+
+    <a href="/cart" class="btn btn-primary btn-add-to-cart">ADD TO CART</a>
+
+  
+<% }else{ %>
 
 
     <h2> OUT OF STOCK</h2>
-
+<%}%>
 </section>
 
 </section>

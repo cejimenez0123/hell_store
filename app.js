@@ -3,18 +3,26 @@ const express = require("express"), app = express(), bodyParser = require("body-
 const mongoose = require("mongoose")
 const dotenv = require("dotenv")
 dotenv.config()
+
 const MongoClient = require('mongodb').MongoClient;
 const url = "mongodb://localhost:27017/hell";
-const Customer = require("./models/customer.js"), Purchase = require("./models/purchase.js"),
+
+const stripe = require("stripe")(`${process.env.STRIPE_SECRET_KEY}`)
+
+
+const Customer = require("./models/customer.js"),
+Purchase = require("./models/purchase.js"),
 Book = require("./models/book")
 
 
 const port = 3003
 const bookRoutes = require("./routes/book")
 const indexRoutes = require("./routes/index")
+const purchaseRoutes = require("./routes/purchase")
 
 app.listen(port, ()=>console.log("Server listening..."))
 mongoose.connect(url)
+
 // app.use(require("express-session")({
 //   secret: "So it goes",
 //   resave: false,
@@ -22,6 +30,9 @@ mongoose.connect(url)
 // }));
 
 //VIEWS MIDDLE
+// for (let i = 0; i < 100; i++) {
+//   Book.create({bookName:"Good Hell",bookAuthor:"Sol Emilio",price:"7.00"})
+// }
 app.use(express.static(__dirname + '/public'));
 app.set("view engine","ejs")
 app.set("views","./views")
@@ -39,4 +50,5 @@ app.use((err, req, res, next) => {
   res.render('error',{error: err});
 });
 app.use(indexRoutes)
+app.use(purchaseRoutes)
 // app.use(bookRoutes)
