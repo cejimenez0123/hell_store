@@ -13,7 +13,21 @@ const router = express.Router();
 //     }
 
 // })
+router.post("/purchase",function(req,res){
+    console.log(req.email)
+    // stripe.customers.create({email:req.email})
+    // .then((customer)=>{
+    //      console.log(customer.id)
+    //         stripe.invoiceItem.create({
+    //         customer: customer.id,
+    //         among: req.amount
+    //     }).then(invoice=>{
+    //         console.log(invoice)
 
+
+    //     }).catch(err=>{console.log(err)})
+    // }).catch(err=>console.log(err))}
+})
 
 
 router.get("/cart",function(req, res){

@@ -1,4 +1,4 @@
-const express = require("express"), app = express(), bodyParser = require("body-parser")
+const express = require("express"), app = express(), path = require("path")
 
 const mongoose = require("mongoose")
 const dotenv = require("dotenv")
@@ -13,7 +13,9 @@ const stripe = require("stripe")(`${process.env.STRIPE_SECRET_KEY}`)
 const Customer = require("./models/customer.js"),
 Purchase = require("./models/purchase.js"),
 Book = require("./models/book")
-
+// const bodyParser = require('body-parser');
+// app.use(bodyParser.json());
+// app.use(bodyParser.urlencoded({ extended: true }));
 
 const port = 3003
 const bookRoutes = require("./routes/book")
@@ -33,7 +35,8 @@ mongoose.connect(url)
 // for (let i = 0; i < 100; i++) {
 //   Book.create({bookName:"Good Hell",bookAuthor:"Sol Emilio",price:"7.00"})
 // }
-app.use(express.static(__dirname + '/public'));
+app.use(express.static(path.join(__dirname, '/public')));
+// app.use("/cart.js",express.static("/public"))
 app.set("view engine","ejs")
 app.set("views","./views")
 
